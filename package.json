@@ -1,5 +1,5 @@
 {
-  "name": "TempelateApp",
+  "name": "MusicMate",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,6 +10,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-firebase/app": "^19.2.2",
+    "@react-native-firebase/auth": "^19.2.2",
     "@react-navigation/bottom-tabs": "^6.5.16",
     "@react-navigation/drawer": "^6.6.11",
     "@react-navigation/material-top-tabs": "^6.6.10",
