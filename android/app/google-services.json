@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "828652532453",
-    "project_id": "musicmate-81398",
-    "storage_bucket": "musicmate-81398.appspot.com"
+    "project_number": "488111375762",
+    "firebase_url": "https://musicmate-d438a-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "musicmate-d438a",
+    "storage_bucket": "musicmate-d438a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:828652532453:android:7d5152337c454d9d361a0c",
+        "mobilesdk_app_id": "1:488111375762:android:3238643290ec3749c7ad4b",
         "android_client_info": {
           "package_name": "com.musicmate"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDw1Xgex7kMwZ4lqGOun9rIP_b_AUMPkdA"
+          "current_key": "AIzaSyAO3Ma4cvxfz-88uvu_1RMF6G615ds-FWA"
         }
       ],
       "services": {
