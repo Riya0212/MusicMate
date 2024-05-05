@@ -26,14 +26,13 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-	  <!-- Do not change NSAllowsArbitraryLoads to true, or you will risk app rejection! -->
 		<key>NSAllowsArbitraryLoads</key>
 		<false/>
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -48,5 +47,70 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>PlayfairDisplay-Bold.otf</string>
+		<string>SFUIDisplay-Semibold.otf</string>
+		<string>Bariol.ttf</string>
+		<string>BariolRegular.ttf</string>
+		<string>Bariol_Regular.ttf</string>
+		<string>BebasNeue Bold.ttf</string>
+		<string>BebasNeueBook.ttf</string>
+		<string>Helvetica.ttf</string>
+		<string>HelveticaNeue-Bold.ttf</string>
+		<string>HelveticaNeue-Light.ttf</string>
+		<string>HelveticaNeue-Regular.ttf</string>
+		<string>icomoon.ttf</string>
+		<string>Lato-Bold.ttf</string>
+		<string>Lato-Regular.ttf</string>
+		<string>Myriad Pro Regular.ttf</string>
+		<string>PlayfairDisplay-Bold.ttf</string>
+		<string>Raleway-Bold.ttf</string>
+		<string>Roboto-Black.ttf</string>
+		<string>Roboto-BlackItalic.ttf</string>
+		<string>Roboto-Bold.ttf</string>
+		<string>Roboto-BoldItalic.ttf</string>
+		<string>Roboto-Italic.ttf</string>
+		<string>Roboto-Light.ttf</string>
+		<string>Roboto-LightItalic.ttf</string>
+		<string>Roboto-Medium.ttf</string>
+		<string>Roboto-MediumItalic.ttf</string>
+		<string>Roboto-Regular.ttf</string>
+		<string>Roboto-Thin.ttf</string>
+		<string>Roboto-ThinItalic.ttf</string>
+		<string>SF-UI-Display-Bold.ttf</string>
+		<string>SF-UI-Display-Medium.ttf</string>
+		<string>SF-UI-Display-Regular.ttf</string>
+		<string>SF-UI-Display-Semibold.ttf</string>
+		<string>SF-UI-Text-Regular.ttf</string>
+		<string>SFProText-Bold.ttf</string>
+		<string>SFProText-Medium.ttf</string>
+		<string>SFProText-Regular.ttf</string>
+		<string>SFProText-Semibold.ttf</string>
+		<string>SFUIDisplay-Bold.ttf</string>
+		<string>SFUIDisplay-Light.ttf</string>
+		<string>SFUIDisplay-Medium.ttf</string>
+		<string>SFUIDisplay-Regular.ttf</string>
+		<string>SFUIDisplay-Semibold.ttf</string>
+		<string>SFUIDisplay-Thin.ttf</string>
+		<string>SFUIDisplay_thin.ttf</string>
+		<string>Steelworks_Vintage_Demo.ttf</string>
+		<string>Zuume Black Italic.ttf</string>
+		<string>Zuume Black.ttf</string>
+		<string>Zuume Bold Italic.ttf</string>
+		<string>Zuume Bold.ttf</string>
+		<string>Zuume ExtraBold Italic.ttf</string>
+		<string>Zuume ExtraBold.ttf</string>
+		<string>Zuume ExtraLight Italic.ttf</string>
+		<string>Zuume ExtraLight.ttf</string>
+		<string>Zuume Italic.ttf</string>
+		<string>Zuume Light Italic.ttf</string>
+		<string>Zuume Light.ttf</string>
+		<string>Zuume Medium Italic.ttf</string>
+		<string>Zuume Medium.ttf</string>
+		<string>Zuume Regular.ttf</string>
+		<string>Zuume SemiBold Italic.ttf</string>
+		<string>Zuume SemiBold.ttf</string>
+	</array>
 </dict>
 </plist>

@@ -1,0 +1,253 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "App/Fonts/Bariol.ttf",
+      "sha1": "ea1336d85af75ced0caa51ca2208898cd27107c1"
+    },
+    {
+      "path": "App/Fonts/BariolRegular.ttf",
+      "sha1": "ea1336d85af75ced0caa51ca2208898cd27107c1"
+    },
+    {
+      "path": "App/Fonts/Bariol_Regular.ttf",
+      "sha1": "ea1336d85af75ced0caa51ca2208898cd27107c1"
+    },
+    {
+      "path": "App/Fonts/BebasNeue Bold.ttf",
+      "sha1": "a2d8f7db6af5eac2cada57b6f24720be9fbad4bb"
+    },
+    {
+      "path": "App/Fonts/BebasNeueBook.ttf",
+      "sha1": "16e3e2bb49af8162faaa4603396e3c3efa575415"
+    },
+    {
+      "path": "App/Fonts/Helvetica.ttf",
+      "sha1": "135c4f42d34608ab130fbb0704652b8a7eb0f9e6"
+    },
+    {
+      "path": "App/Fonts/HelveticaNeue-Bold.ttf",
+      "sha1": "4df1c65ace6cb5dfa38ef3f2b59e89ab6d08ada8"
+    },
+    {
+      "path": "App/Fonts/HelveticaNeue-Light.ttf",
+      "sha1": "c3f356f8cde08c3faab279c0441d9c20fef65fa2"
+    },
+    {
+      "path": "App/Fonts/HelveticaNeue-Regular.ttf",
+      "sha1": "4923aa3ecf6cce3169b9abc805aa5994be2a2c3b"
+    },
+    {
+      "path": "App/Fonts/icomoon.ttf",
+      "sha1": "b9c9e08df0666367c908bb006813b0bf6755e966"
+    },
+    {
+      "path": "App/Fonts/Lato-Bold.ttf",
+      "sha1": "a3a53a436baaf6dc2e7a05f05866a761c214692b"
+    },
+    {
+      "path": "App/Fonts/Lato-Regular.ttf",
+      "sha1": "29eb192629b0bbb41a7b7f49ab2aec82d4261921"
+    },
+    {
+      "path": "App/Fonts/Myriad Pro Regular.ttf",
+      "sha1": "969e004de800fe16cbe8d0f14529a358ae8066de"
+    },
+    {
+      "path": "App/Fonts/PlayfairDisplay-Bold.otf",
+      "sha1": "fb7bc4c7aaae96f694e051ba501d1789ba3894f1"
+    },
+    {
+      "path": "App/Fonts/PlayfairDisplay-Bold.ttf",
+      "sha1": "de6c6c9f07f544e38ae0221687e572996af6f3da"
+    },
+    {
+      "path": "App/Fonts/Raleway-Bold.ttf",
+      "sha1": "7da5bcf0f8ce1caa4806f535ea123ff77f3b3c0a"
+    },
+    {
+      "path": "App/Fonts/Roboto-Black.ttf",
+      "sha1": "3f8e401d808f6ce84b542266726514ac8be73171"
+    },
+    {
+      "path": "App/Fonts/Roboto-BlackItalic.ttf",
+      "sha1": "03d6e3747d862385dbe48e8296385b9236101a62"
+    },
+    {
+      "path": "App/Fonts/Roboto-Bold.ttf",
+      "sha1": "62442a18a9fe9457c1afeabf683d263a691b7798"
+    },
+    {
+      "path": "App/Fonts/Roboto-BoldItalic.ttf",
+      "sha1": "2f10ad9e8cab0880182705c4e0fbaeabae706e64"
+    },
+    {
+      "path": "App/Fonts/Roboto-Italic.ttf",
+      "sha1": "65f3f6a7e1bd2fa6f2df35e4b07775d7f1dde4f0"
+    },
+    {
+      "path": "App/Fonts/Roboto-Light.ttf",
+      "sha1": "18788c5d630fa695f9283f6393bfa541b2031508"
+    },
+    {
+      "path": "App/Fonts/Roboto-LightItalic.ttf",
+      "sha1": "6e01f9df9449565697032b002706a94b51862bbe"
+    },
+    {
+      "path": "App/Fonts/Roboto-Medium.ttf",
+      "sha1": "3c6a09fcc6a454924c81af7dff94fc6d399ed79b"
+    },
+    {
+      "path": "App/Fonts/Roboto-MediumItalic.ttf",
+      "sha1": "b3aa2d8f16d5a331fdced82f213a052b204eaca0"
+    },
+    {
+      "path": "App/Fonts/Roboto-Regular.ttf",
+      "sha1": "56c5c0d38bde4c1f1549dda43db37b09c608aad3"
+    },
+    {
+      "path": "App/Fonts/Roboto-Thin.ttf",
+      "sha1": "58c733e22bceeaf9609ce578eca92ac303c6d92f"
+    },
+    {
+      "path": "App/Fonts/Roboto-ThinItalic.ttf",
+      "sha1": "cc79d5a23bd0ec08b1d99f5390bf33cacc3082f4"
+    },
+    {
+      "path": "App/Fonts/SF-UI-Display-Bold.ttf",
+      "sha1": "21e957ac42cec3a2c6fb9b35d91ba354cc3861da"
+    },
+    {
+      "path": "App/Fonts/SF-UI-Display-Medium.ttf",
+      "sha1": "26deb1a45c1a9b18795540856ef501ec2914b892"
+    },
+    {
+      "path": "App/Fonts/SF-UI-Display-Regular.ttf",
+      "sha1": "e621dc95667adc7f17317c1867cba01d157cf70d"
+    },
+    {
+      "path": "App/Fonts/SF-UI-Display-Semibold.ttf",
+      "sha1": "0f4e0a3bce39a6c594bf75e74374948444faf198"
+    },
+    {
+      "path": "App/Fonts/SF-UI-Text-Regular.ttf",
+      "sha1": "7578e93c66794bfa551f336c2d7b384d53d086cb"
+    },
+    {
+      "path": "App/Fonts/SFProText-Bold.ttf",
+      "sha1": "632e6cea171b276e5dd1f13b152c702fbf562cee"
+    },
+    {
+      "path": "App/Fonts/SFProText-Medium.ttf",
+      "sha1": "3b8df618cd23e83843b16a8a32de1ddc9de44df4"
+    },
+    {
+      "path": "App/Fonts/SFProText-Regular.ttf",
+      "sha1": "b4893462f2289df6978f9462a63db9e64bcc9342"
+    },
+    {
+      "path": "App/Fonts/SFProText-Semibold.ttf",
+      "sha1": "9560ae412d73c7c9af72333db50464b4e597b0f9"
+    },
+    {
+      "path": "App/Fonts/SFUIDisplay-Bold.ttf",
+      "sha1": "06edfaa682b41ce8c6bb7ce6c77d283d0b7be855"
+    },
+    {
+      "path": "App/Fonts/SFUIDisplay-Light.ttf",
+      "sha1": "cc5c79788847eba14af0ce69ee97e99c20422ecf"
+    },
+    {
+      "path": "App/Fonts/SFUIDisplay-Medium.ttf",
+      "sha1": "1794d8e39523f7e5c4a4d955d20cddabf563d4cd"
+    },
+    {
+      "path": "App/Fonts/SFUIDisplay-Regular.ttf",
+      "sha1": "725d4f25a56647a2ba60c125c7d0548cdafdc4cd"
+    },
+    {
+      "path": "App/Fonts/SFUIDisplay-Semibold.otf",
+      "sha1": "b72553b67274e03c9f3c3b864df01568a3292424"
+    },
+    {
+      "path": "App/Fonts/SFUIDisplay-Semibold.ttf",
+      "sha1": "1618c2afa7fc4adbce87ad1dbd8e7b57eff826a1"
+    },
+    {
+      "path": "App/Fonts/SFUIDisplay-Thin.ttf",
+      "sha1": "ec5d973b3dd6397e113b667192e6ca3a47a32da6"
+    },
+    {
+      "path": "App/Fonts/SFUIDisplay_thin.ttf",
+      "sha1": "1bac9bcddeb5bac4bbf3a86e2006351ead8e5b90"
+    },
+    {
+      "path": "App/Fonts/Steelworks_Vintage_Demo.ttf",
+      "sha1": "86a1b9b667cbd364685a2f4a417fca41cf5a927e"
+    },
+    {
+      "path": "App/Fonts/Zuume Black Italic.ttf",
+      "sha1": "ca7f8d5b5601af7cfb98cd5c5d5acdb3eddf50f6"
+    },
+    {
+      "path": "App/Fonts/Zuume Black.ttf",
+      "sha1": "e5bfe698cf1613ba2f75346dcc1c703ff12089ce"
+    },
+    {
+      "path": "App/Fonts/Zuume Bold Italic.ttf",
+      "sha1": "8fcda2bfd93b82a3ed1bb6e7965aa5c0de6f7155"
+    },
+    {
+      "path": "App/Fonts/Zuume Bold.ttf",
+      "sha1": "2fe7545aed2835bd2a59f5c37d56b75228decd45"
+    },
+    {
+      "path": "App/Fonts/Zuume ExtraBold Italic.ttf",
+      "sha1": "d917872e9d351f431c65d6085442a04279f6fa16"
+    },
+    {
+      "path": "App/Fonts/Zuume ExtraBold.ttf",
+      "sha1": "bf5aa142887eebd0e4aca8b5d6de7b7c7b7f7ea9"
+    },
+    {
+      "path": "App/Fonts/Zuume ExtraLight Italic.ttf",
+      "sha1": "940e9256b325b0b48ee26884091df5b000852265"
+    },
+    {
+      "path": "App/Fonts/Zuume ExtraLight.ttf",
+      "sha1": "95c7962a75293e30c9057228679d7c07baa84572"
+    },
+    {
+      "path": "App/Fonts/Zuume Italic.ttf",
+      "sha1": "205c415a252f738ebb96bdb485a13e79b21d375e"
+    },
+    {
+      "path": "App/Fonts/Zuume Light Italic.ttf",
+      "sha1": "0a8209731199c6710756fe018b85a94362dacfdb"
+    },
+    {
+      "path": "App/Fonts/Zuume Light.ttf",
+      "sha1": "2e33cb37366b921622ed50d4030fa82ddce4fc6e"
+    },
+    {
+      "path": "App/Fonts/Zuume Medium Italic.ttf",
+      "sha1": "043156f781a26491a45c8ff14243c91e40d2c93a"
+    },
+    {
+      "path": "App/Fonts/Zuume Medium.ttf",
+      "sha1": "2aa2ff5aced38bbc9854401c08a15797f2cf377f"
+    },
+    {
+      "path": "App/Fonts/Zuume Regular.ttf",
+      "sha1": "b59df9799f9fd469f4ba5e214e2ae376cf8f10c7"
+    },
+    {
+      "path": "App/Fonts/Zuume SemiBold Italic.ttf",
+      "sha1": "35acaa93a5d8af1f662a643c540511a1c0c1ea6e"
+    },
+    {
+      "path": "App/Fonts/Zuume SemiBold.ttf",
+      "sha1": "e4d911873a56bbdcb5cda7ff12a9d5e9b87c2c86"
+    }
+  ]
+}
