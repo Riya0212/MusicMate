@@ -15,7 +15,7 @@ function AppNavigation() {
             theme={systemTheme == 'light' ? Colors.light : Colors.dark}
             independent={true}>
             <Stack.Navigator
-                initialRouteName={NAVIGATION.home}>
+                initialRouteName={NAVIGATION.login}>
                 {StackNavigation?.length > 0 &&
                     StackNavigation?.map((item, index) => {
                         return (

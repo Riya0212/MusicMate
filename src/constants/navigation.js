@@ -1,10 +1,12 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "@/screens/home";
 import { Colors, Fonts, Metrics } from "@/themes";
 import { Icon, iconTypes } from "@/components";
+import Home from "@/screens/home";
+import Login from "@/screens/login";
 const BottomTab = createBottomTabNavigator()
 export const NAVIGATION = {
-    home: "Home"
+    home: "Home",
+    login: "Login"
 };
 
 export const StackNavigation = [
@@ -15,7 +17,13 @@ export const StackNavigation = [
             headerShown: false,
         }),
     },
-
+    {
+        component: Login,
+        name: NAVIGATION.login,
+        options: props => ({
+            headerShown: false,
+        }),
+    },
 ];
 
 export const BottomTabNavigation = [
