@@ -3,10 +3,12 @@ import { Colors, Fonts, Metrics } from "@/themes";
 import { Icon, iconTypes } from "@/components";
 import Home from "@/screens/home";
 import Login from "@/screens/login";
+import SignUp from "@/screens/signup";
 const BottomTab = createBottomTabNavigator()
 export const NAVIGATION = {
     home: "Home",
-    login: "Login"
+    login: "Login",
+    signup: "SignUp",
 };
 
 export const StackNavigation = [
@@ -20,6 +22,13 @@ export const StackNavigation = [
     {
         component: Login,
         name: NAVIGATION.login,
+        options: props => ({
+            headerShown: false,
+        }),
+    },
+    {
+        component: SignUp,
+        name: NAVIGATION.signup,
         options: props => ({
             headerShown: false,
         }),
