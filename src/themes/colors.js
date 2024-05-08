@@ -9,7 +9,8 @@ const light = {
         black: '#000000',
         white: '#ffffff',
         grey: '#808080',
-        red: '#FF0000'
+        red: '#FF0000',
+        borderGrey:'#CDCDCD',
 
     },
     isDark: false,
@@ -23,7 +24,8 @@ const dark = {
         black: '#ffffff',
         white: '#000000',
         grey: '#808080',
-        red: '#FF0000'
+        red: '#FF0000',
+        borderGrey:'#CDCDCD',
 
     },
     isDark: true,
