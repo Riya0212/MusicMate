@@ -25,7 +25,6 @@ const TextInputIconComponent = ({
   numberOfLines,
   error,
   errorStyle,
-  param,
   onBlur,
   onFocus,
   containerStyle,
@@ -80,8 +79,8 @@ const TextInputIconComponent = ({
         />
         {iconRightChildren != undefined && hasRightIcon == true && iconRightChildren}
       </View>
-      {error != null && error[param] != undefined && (
-        <Text style={[style.errorStyle, errorStyle]}>{error[param]}</Text>
+      {error && (
+        <Text style={[style.errorStyle, errorStyle]}>{error}</Text>
       )}
     </View>
   );
