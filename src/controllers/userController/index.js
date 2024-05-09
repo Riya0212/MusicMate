@@ -1,7 +1,8 @@
 import { NAVIGATION } from '@/constants/navigation';
 import { navigationRef } from '@/navigation/rootNavigation';
 import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
+import firestore, { firebase } from '@react-native-firebase/firestore';
+import DeviceInfo from 'react-native-device-info';
 
 export class UserController {
     static signInWithEmailAndPassword(email, password) {
@@ -26,14 +27,14 @@ export class UserController {
                     navigationRef.navigate(NAVIGATION.login)
                     rejected({
                       status: false,
-                      message: 'Verify your emailand try again',
+                      message: 'Verify your email and try again',
                       user: users,
                     });
                   })
                   .catch(error => {
                     rejected({
                       status: false,
-                      message: 'Verify your emailand try again',
+                      message: 'Verify your email and try again',
                       user: users,
                     });
                   });
@@ -93,5 +94,69 @@ export class UserController {
             resolve({status: false, message: e.message});
           }
         });
-      }    
+    }
+    
+    static registerUser(name,email,password) {
+      return new Promise((resolve, rejected) => {
+        try {
+          auth()
+            .createUserWithEmailAndPassword(email,password)
+            .then(res => {
+              var user = res.user
+              if(res.user.uid) {
+                this.createUser(user.uid, email)
+                .then((res)=>{
+                  this.storeUserDetails(res);
+                  resolve({data: res, status: true})
+                })
+                .catch(err => {
+                  rejected(err);
+                })
+              } else {
+                this.logoutUser()
+                .then(res => {
+                  navigationRef.navigate(NAVIGATION.signup)
+                  rejected({status: false})
+                })
+                .catch(err => {
+                  rejected({ status: false})
+                })
+              }
+            })
+            .catch(error => {
+              var message = error.message.replace(/ *\[[^\]]*]/, '')?.trim();
+              if (error.code === 'auth/email-already-in-use') {
+                message = 'That email address is already in use!'
+              }
+          
+              if (error.code === 'auth/invalid-email') {
+                message = 'That email address is invalid!'
+              }
+              resolve({status: false, message: message})
+            })
+        } catch (e) {
+          resolve({status: false, message: e.message})
+        }
+      })
+    }
+
+    static createUser(id, email) {
+      return new Promise(async(resolve, reject) => {
+        let deviceId = await DeviceInfo.getUniqueId()
+        await firestore().collection('users').doc(id).set({
+          id: id,
+          email: email,
+          deviceUniqueId: deviceId,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(()=>{
+          this.userDetailsGet(id)
+          .then((res) => {
+            resolve(res);
+          })
+        }).catch(err => {
+          reject({status: false, message: err.message})
+        })
+      })
+    }
 }
