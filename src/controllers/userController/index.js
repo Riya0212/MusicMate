@@ -2,6 +2,7 @@ import { NAVIGATION } from '@/constants/navigation';
 import { navigationRef } from '@/navigation/rootNavigation';
 import auth from '@react-native-firebase/auth';
 import firestore, { firebase } from '@react-native-firebase/firestore';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import DeviceInfo from 'react-native-device-info';
 
 export class UserController {
@@ -85,11 +86,19 @@ export class UserController {
     static logoutUser() {
         return new Promise(async (resolve, rejected) => {
           try {
-            auth()
-              .signOut()
+            if (auth().currentUser.providerData[0].providerId == 'google.com') {
+              await GoogleSignin.revokeAccess();
+              await GoogleSignin.signOut()
               .then(res => {
+                resolve({status: true})
               })
-            resolve({status: true});
+            } else {
+              await auth()
+                .signOut()
+                .then(res => {
+                })
+              resolve({status: true});
+            }
           } catch (e) {
             resolve({status: false, message: e.message});
           }
@@ -104,7 +113,8 @@ export class UserController {
             .then(res => {
               var user = res.user
               if(res.user.uid) {
-                this.createUser(user.uid, email)
+                res.user.updateProfile({displayName: name})
+                this.createUser(user.uid, email, name)
                 .then((res)=>{
                   this.storeUserDetails(res);
                   resolve({data: res, status: true})
@@ -140,13 +150,14 @@ export class UserController {
       })
     }
 
-    static createUser(id, email) {
+    static createUser(id, email, name) {
       return new Promise(async(resolve, reject) => {
         let deviceId = await DeviceInfo.getUniqueId()
         await firestore().collection('users').doc(id).set({
           id: id,
           email: email,
           deviceUniqueId: deviceId,
+          fullName: name,
           createdAt: firebase.firestore.FieldValue.serverTimestamp(),
           updatedAt: firebase.firestore.FieldValue.serverTimestamp()
         }).then(()=>{
@@ -157,6 +168,40 @@ export class UserController {
         }).catch(err => {
           reject({status: false, message: err.message})
         })
+      })
+    }
+
+    static signInWithCredential(credential,exist) {
+      return new Promise(async(resolve, rejected) => {
+        await auth().signInWithCredential(credential)
+          .then(async res => {
+            var user = res.user;
+            if(res.additionalUserInfo.isNewUser && exist) {
+              this.createUser(user.uid,user.email,user.displayName)
+              .then((res) => {
+                this.storeUserDetails(res);
+                resolve({status: true, data: res})
+              })
+              .catch(err => {
+                rejected({status: false, message: err.message})
+              })
+            } else if (!res.additionalUserInfo.isNewUser && exist) {
+              this.logoutUser()
+              resolve({status: false, message: 'User already exist'})
+            } else if(res.additionalUserInfo.isNewUser && !exist) {
+              await auth().currentUser.delete()
+              resolve({status: false, message: 'User not exist '})
+            } else {
+              this.userDetailsGet(user.uid)
+              .then(res => {
+                this.storeUserDetails(res);
+                resolve({data: res, status: true})
+              })
+              .catch(err => {
+                rejected({status: false, message: err.message})
+              })
+            }
+          })
       })
     }
 }
