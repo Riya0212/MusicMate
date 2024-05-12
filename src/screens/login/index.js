@@ -108,7 +108,7 @@ class LoginClass extends Component {
                         <Text style={{fontFamily: 'Satoshi-Bold', fontSize: 30, color: '#000', marginVertical: wp(5)}}>Sign In</Text>
                         <View style={{flexDirection: 'row'}}>
                             <Text style={{fontFamily: 'Satoshi-Regular', color: '#383838'}}>If You Need Any Support </Text>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate(NAVIGATION.signup)} >
+                            <TouchableOpacity onPress={() => alert('Support')} >
                                 <Text style={{fontFamily: 'Satoshi-Regular',  color: '#AC261B'}}>Click Here</Text>
                             </TouchableOpacity>
                         </View>
@@ -120,6 +120,7 @@ class LoginClass extends Component {
                                 this.setState({email: text})
                             }}
                             sectionStyle={styles.sectionStyle}
+                            errorStyle={{ paddingLeft: wp(4)}}
                             error={this.state.emailErr}
                         />
                         <TextInputIconComponent
@@ -141,6 +142,7 @@ class LoginClass extends Component {
                                 onPress={() => this.setState({visible: !this.state.visible})}
                                 />
                             }
+                            errorStyle={{paddingLeft: wp(4)}}
                             error={this.state.passwordErr}
                         />
                         <TouchableOpacity style={{width: '100%', marginTop: hp(2), paddingLeft: wp(5)}}>
@@ -238,8 +240,8 @@ const styles = StyleSheet.create({
         color: '#383838',
         fontFamily: 'Satoshi-Medium',
         fontSize: 16,
-        paddingVertical: wp(3),
-        paddingLeft: wp(5),
+        paddingVertical: wp(2),
+        paddingLeft: wp(3),
         borderColor: '#D9D9D9',
         borderRadius: wp(6)
     },
@@ -250,7 +252,7 @@ const styles = StyleSheet.create({
         marginBottom: hp(6),
         borderRadius: 25,
         paddingHorizontal: wp(10),
-        paddingVertical: wp(5)
+        paddingVertical: wp(4)
     },
     buttontext: {
         fontFamily: 'Satoshi-Bold',
