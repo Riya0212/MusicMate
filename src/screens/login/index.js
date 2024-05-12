@@ -17,6 +17,8 @@ import { wp,hp } from '@/themes';
 import { ButtonComponent, Icon, TextInputIconComponent, iconTypes } from '@/components';
 import { NAVIGATION } from '@/constants/navigation';
 import { UserController } from '@/controllers';
+import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 class LoginClass extends Component {
     constructor(props) {
@@ -29,6 +31,10 @@ class LoginClass extends Component {
             visible: false,
             isLoading: false,
         };
+    }
+
+    componentDidMount() {
+        GoogleSignin.configure({webClientId: '488111375762-jim9c3e4r5mfljikej62u6m6jl48mbov.apps.googleusercontent.com', offlineAccess: false});
     }
 
     handleClick = () => {
@@ -78,6 +84,33 @@ class LoginClass extends Component {
         })
     }
     
+    onGooglePress = async() => {
+        this.setState({isLoading: true})
+        try {
+            await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+
+            // Get the users ID token
+            const { idToken } = await GoogleSignin.signIn();
+          
+            // Create a Google credential with the token
+            const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+          
+            // Sign-in the user with the credential
+            await UserController.signInWithCredential(googleCredential, false)
+            .then((res) => {
+                if(res.status){
+                    this.setState({isLoading: false})
+                    this.props.navigation.navigate(NAVIGATION.home)
+                } else {
+                    this.setState({isLoading: false})
+                    ToastAndroid.show(res.message,ToastAndroid.LONG)
+                }
+            })           
+        } catch (error) {
+            this.setState({isLoading: false})
+        }
+    }
+
     render() {
         return(
             <ScrollView style={styles.container}>
@@ -160,7 +193,9 @@ class LoginClass extends Component {
                             <View style={{flex: 1, height: 1, backgroundColor: '#B0B0B0'}} />
                         </View>
                         <View style={styles.iconContainer}>
-                            <Image source={google} style={{width: wp(8), height: hp(6)}} resizeMode='contain'/>
+                            <TouchableOpacity onPress={() => this.onGooglePress()}>
+                                <Image source={google} style={{width: wp(8), height: hp(6)}} resizeMode='contain'/>
+                            </TouchableOpacity>
                             <Image source={apple} style={{width: wp(8), height: hp(6)}} resizeMode='contain'/>
                         </View>
                         <View style={{flexDirection: 'row', alignItems: 'center', marginTop: hp(5)}}>
