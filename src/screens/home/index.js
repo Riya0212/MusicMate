@@ -10,6 +10,7 @@ import {
   iconTypes,
 } from '@/components';
 import {NAVIGATION} from '@/constants/navigation';
+import { add } from 'react-native-track-player/lib/src/trackPlayer';
 
 class HomeClass extends Component {
   constructor(props) {
@@ -52,7 +53,7 @@ class HomeClass extends Component {
               type: 'artist',
             },
           ],
-          id: '0tGPJ0bkWOUmH7MEOR77qc',
+          id: '1tGPJ0bkWOUmH7MEOR77qc',
           images: [
             {
               url: 'https://i.scdn.co/image/ab67616d0000b2737359994525d219f64872d3b1',
@@ -81,7 +82,7 @@ class HomeClass extends Component {
               type: 'artist',
             },
           ],
-          id: '0tGPJ0bkWOUmH7MEOR77qc',
+          id: '2tGPJ0bkWOUmH7MEOR77qc',
           images: [
             {
               url: 'https://i.scdn.co/image/ab67616d0000b2737359994525d219f64872d3b1',
@@ -110,7 +111,11 @@ class HomeClass extends Component {
   componentDidMount() {
     this.addHeader();
   }
-  componentDidUpdate(prevProps, prevState) {}
+  componentDidUpdate(prevProps, prevState) {
+    if(prevProps.styles.blackColor != this.props.styles.blackColor){
+      this.addHeader()
+    }
+  }
 
   addHeader() {
     return this.props.navigation.setOptions({
@@ -196,7 +201,7 @@ class HomeClass extends Component {
         <Statusbar />
         <FlatList
           data={trackData}
-          key={(item,index) => item+index}
+          key={'Tracks'}
           contentContainerStyle={{
             marginHorizontal: Metrics.WIDTH * 0.04,
             marginTop: Metrics.WIDTH * 0.04,

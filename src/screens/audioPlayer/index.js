@@ -1,5 +1,5 @@
 import {Component} from 'react';
-import {View, Text, Image, Button} from 'react-native';
+import {View, Text, Image, Button, TouchableOpacity} from 'react-native';
 import {Colors, Fonts, Images, Metrics} from '@/themes';
 import styles from './styles';
 import {
@@ -10,13 +10,14 @@ import {
   iconTypes,
 } from '@/components';
 import TrackPlayer, {
+  isPlaying,
   useActiveTrack,
   useProgress,
 } from 'react-native-track-player';
 import Slider from '@react-native-community/slider';
 import {
   addTracks,
-  secondsToHHMMSS,
+  millisecondsToHHMMSS,
   setupPlayer,
 } from '@/services/trackPlayerServices';
 
@@ -25,36 +26,31 @@ class AudioPlayerClass extends Component {
     super(props);
     this.state = {
       isPlayerReady: false,
-      progress: 0,
-      activeTrack: null,
-      currentTrack: props.route.params.currentTrack,
+      progress: props.progress,
+      activeTrack: props.track,
+      currentTrack: props.track,
+      isPlaying: false,
     };
   }
 
   componentDidMount() {
     this.addHeader();
     this.handleSetup();
-    this.trackProgressListener = TrackPlayer.addEventListener(
-      'track-progress',
-      this.onTrackProgress,
-    );
+    console.log('in mount');
 
-    this.statusChangeListener = TrackPlayer.addEventListener(
-      'remote-playback-status-changed',
-      this.onPlaybackStatusChanged,
-    );
+    console.log(this.state.currentTrack, this.props.route.params.currentTrack,'curret');
+    
   }
 
-  componentDidUpdate(prevProps, prevState) {}
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.progress != this.props.progress) {
+      this.setState({progress: this.props.progress});
+    }
+  }
   componentWillUnmount() {
-    TrackPlayer.removeEventListener(
-      'track-progress',
-      this.trackProgressListener,
-    );
-    TrackPlayer.removeEventListener(
-      'remote-playback-status-changed',
-      this.statusChangeListener,
-    );
+    console.log('unmounttt');
+    TrackPlayer.remove();
+
   }
 
   addHeader() {
@@ -101,9 +97,12 @@ class AudioPlayerClass extends Component {
   }
 
   async handleSetup() {
+    console.log('in setup');
+
     let isSetup = await setupPlayer();
 
     const queue = await TrackPlayer.getQueue();
+    console.log(queue, 'quew', isSetup);
     if (isSetup && queue.length <= 0) {
       //   await addTracks();
       await TrackPlayer.add([this.state.currentTrack]);
@@ -125,21 +124,36 @@ class AudioPlayerClass extends Component {
     this.setState({activeTrack: event.activeTrack});
   };
 
+  handleOnPlay() {
+    this.setState({isPlaying: true}, () => TrackPlayer.play());
+  }
+
+  handleOnPause() {
+    this.setState({isPlaying: false}, () => TrackPlayer.pause());
+  }
+
+  handleOnSliderChange(pos) {
+    TrackPlayer.seekTo(pos);
+    TrackPlayer.play().then(() => {
+      this.setState({isPlaying: true});
+    });
+  }
   render() {
-    const {progress, activeTrack, currentTrack} = this.state;
+    const {progress, activeTrack, currentTrack, isPlaying} = this.state;
+
     return (
       <View style={this.props.styles.viewContainer}>
         <Statusbar />
-        <View
+        {/* <View
           style={{
             margin: Metrics.WIDTH * 0.04,
-            // backgroundColor: 'red',
+            justifyContent: 'center',
             flex: 1,
           }}>
           <View
             style={{
-              width: Metrics.WIDTH * 0.9,
-              height: Metrics.HEIGHT * 0.5,
+              width: Metrics.WIDTH * 0.8,
+              height: Metrics.HEIGHT * 0.4,
               borderWidth: 1,
               justifyContent: 'center',
               alignSelf: 'center',
@@ -155,50 +169,138 @@ class AudioPlayerClass extends Component {
               }}
             />
           </View>
-          {console.log(
-            secondsToHHMMSS(Math.floor(progress.position)),
-            'durr',
-            secondsToHHMMSS(Math.floor(currentTrack.duration_ms)),
-          )}
-          <Text style={{color: 'red'}}>
-            {secondsToHHMMSS(Math.floor(progress.position || 0))}
-          </Text>
-          <Slider
-            style={{width: '70%', height: 40}}
-            minimumValue={0}
-            maximumValue={300}
-            minimumTrackTintColor="#52527a"
-            maximumTrackTintColor="#52527a"
-            thumbTintColor="#52527a"
-            value={progress.position}
+          <TextComponent
+            text={activeTrack?.name}
+            textStyle={{
+              fontSize: Fonts.size.medium,
+              textAlign: 'center',
+              marginTop: 10,
+            }}
           />
-          <Text style={{color: 'red'}}>{currentTrack?.duration_ms}</Text>
-          <Button
-            title="Play"
-            color="#777"
-            onPress={() => TrackPlayer.play()}
-            style={{margin: 15}}
+          <TextComponent
+            text={activeTrack?.artists[0].name}
+            textStyle={{
+              color: 'grey',
+              textAlign: 'center',
+              fontSize: Fonts.size.normal,
+            }}
           />
-          <Button
-            title="pause"
-            color="#777"
-            onPress={() => TrackPlayer.pause()}
-            style={{margin: 15}}
-          />
-          {/* <Button title="skip" color="#777" onPress={() => TrackPlayer.skip()} style={{padding:15}}/> */}
-          <Button
-            title="next"
-            color="#777"
-            onPress={() => TrackPlayer.skipToNext()}
-            style={{margin: 15}}
-          />
-          <Button
-            title="previous"
-            color="#777"
-            onPress={() => TrackPlayer.skipToPrevious()}
-            style={{margin: 15}}
-          />
-        </View>
+
+          <View
+            style={{
+              marginTop: Metrics.HEIGHT * 0.05,
+            }}>
+            <Slider
+              style={{
+                height: 20,
+                alignItems: 'center',
+              }}
+              minimumValue={0}
+              maximumValue={300}
+              minimumTrackTintColor="white"
+              maximumTrackTintColor="grey"
+              thumbTintColor="white"
+              value={progress.position}
+              onValueChange={(val) => {
+                TrackPlayer.pause()
+                this.setState({isPlaying: false})
+              }}
+              onSlidingComplete={() => this.handleOnSliderChange()}
+            />
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginHorizontal: 10,
+              }}>
+              <TextComponent
+                text={millisecondsToHHMMSS(Math.floor(progress.position || 0))}
+              />
+              <TextComponent
+                text={millisecondsToHHMMSS(
+                  Math.floor(currentTrack.duration_ms / 100),
+                )}
+              />
+            </View>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+              margin: Metrics.baseMargin,
+              marginTop: Metrics.doubleBaseMargin,
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                width: '33%',
+              }}>
+              <Icon
+                iconType={iconTypes.Ionicons}
+                name={'heart-outline'}
+                size={25}
+                color={this.props.styles.blackColor}
+              />
+              <Icon
+                iconType={iconTypes.FontAwesome6}
+                name={'backward-step'}
+                size={25}
+                color={this.props.styles.blackColor}
+                onPress={() => TrackPlayer.skipToPrevious()}
+                viewStyle={{
+                  width: '25%',
+                }}
+              />
+            </View>
+            <View
+              style={{
+                width: '34%',
+                alignItems: 'center',
+              }}>
+              <TouchableOpacity
+                style={this.props.styles.playBtn}
+                onPress={() => {
+                  isPlaying == true
+                    ? this.handleOnPause()
+                    : this.handleOnPlay();
+                }}>
+                <Icon
+                  iconType={iconTypes.FontAwesome}
+                  name={isPlaying == true ? 'pause' : 'play'}
+                  size={20}
+                  color={Colors.light.colors.black}
+                  isDisabled={true}
+                  viewStyle={{
+                    justifyContent: 'center',
+                  }}
+                />
+              </TouchableOpacity>
+            </View>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                width: '33%',
+              }}>
+              <Icon
+                iconType={iconTypes.FontAwesome6}
+                name={'forward-step'}
+                size={25}
+                color={this.props.styles.blackColor}
+                onPress={() => TrackPlayer.skipToNext()}
+              />
+              <Icon
+                iconType={iconTypes.Feather}
+                name={'minus-circle'}
+                size={25}
+                color={this.props.styles.blackColor}
+                onPress={() => TrackPlayer.stop()}
+              />
+            </View>
+          </View>
+        </View> */}
       </View>
     );
   }
@@ -206,6 +308,15 @@ class AudioPlayerClass extends Component {
 
 const AudioPlayer = props => {
   const style = Colors.useThemedStyles(styles);
-  return <AudioPlayerClass {...props} styles={style} />;
+  const progress = useProgress();
+  const track = useActiveTrack();
+  return (
+    <AudioPlayerClass
+      {...props}
+      styles={style}
+      track={track}
+      progress={progress}
+    />
+  );
 };
 export default AudioPlayer;

@@ -19,10 +19,7 @@ const styles = themeMode =>
     trackView: {
       width: Metrics.HEIGHT * 0.08,
       height: Metrics.HEIGHT * 0.08,
-      borderRadius: 10,
       backgroundColor: themeMode.white,
-      borderWidth: 2,
-      borderColor: themeMode.borderGrey,
       justifyContent: 'center',
     },
     mainView: {
@@ -33,6 +30,7 @@ const styles = themeMode =>
       borderColor: themeMode.borderGrey,
       borderRadius:10
     },
+    blackColor: themeMode.black
   });
 
 export default styles;
