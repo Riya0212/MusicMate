@@ -9,7 +9,9 @@ export default class App extends Component {
   render() {
     return (
       <StoreProvider store={reduxStore}>
-        <PersistGate persistor={persister} loading={null}></PersistGate>
+        <PersistGate persistor={persister} loading={null}>
+          <Router/>
+        </PersistGate>
       </StoreProvider>
     );
   }

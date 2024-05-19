@@ -11,6 +11,8 @@ import {
 } from '@/components';
 import {NAVIGATION} from '@/constants/navigation';
 import { add } from 'react-native-track-player/lib/src/trackPlayer';
+import { setupPlayer } from '@/services/trackPlayerServices';
+import TrackPlayer from 'react-native-track-player';
 
 class HomeClass extends Component {
   constructor(props) {
@@ -110,6 +112,7 @@ class HomeClass extends Component {
 
   componentDidMount() {
     this.addHeader();
+    this.handleSetup()
   }
   componentDidUpdate(prevProps, prevState) {
     if(prevProps.styles.blackColor != this.props.styles.blackColor){
@@ -129,17 +132,13 @@ class HomeClass extends Component {
                 iconType={iconTypes.FontAwesome}
                 name={'home'}
                 size={25}
-                color={'white'}
+                color={this.props.styles.blackColor}
               />
             }
             headerMiddleChildren={
               <TextComponent
                 text={'Home'}
-                textStyle={{
-                  color: 'white',
-                  fontSize: Fonts.size.normal,
-                  marginHorizontal: 10,
-                }}
+                textStyle={this.props.styles.headerMiddleText}
               />
             }
           />
@@ -148,8 +147,23 @@ class HomeClass extends Component {
     });
   }
 
+  async handleSetup() {
+    console.log('in setup');
+
+    let isSetup = await setupPlayer();
+
+    const queue = await TrackPlayer.getQueue();
+    console.log(queue, 'quew', isSetup);
+    if (isSetup && queue.length <= 0) {
+      //   await addTracks();
+      await TrackPlayer.add(this.state.trackData);
+      await TrackPlayer.setRepeatMode(RepeatMode.Queue);
+    }
+
+    console.log(isSetup, 'setupp');
+    this.setState({isPlayerReady: isSetup});
+  }
   renderMusicData(item) {
-    console.log(item, 'ii', item.images[0].url);
     return (
       <TouchableOpacity
         style={this.props.styles.mainView}
@@ -177,7 +191,7 @@ class HomeClass extends Component {
           <TextComponent
             text={item.name}
             textStyle={{
-              color: 'white',
+              color: this.props.styles.blackColor,
               fontSize: Fonts.size.normal,
               fontFamily: Fonts.type.satoshiBold,
             }}
@@ -194,6 +208,7 @@ class HomeClass extends Component {
       </TouchableOpacity>
     );
   }
+
   render() {
     const {trackData} = this.state;
     return (

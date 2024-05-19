@@ -91,3 +91,5 @@ export function events() {
   TrackPlayer.addEventListener('playback-state', onPlaybackState);
   TrackPlayer.addEventListener('playback-error', onPlaybackError);
 }
+
+export function playBackServices(){}

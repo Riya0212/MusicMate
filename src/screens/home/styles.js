@@ -1,4 +1,4 @@
-import {Metrics} from '@/themes';
+import {Fonts, Metrics} from '@/themes';
 import {StyleSheet} from 'react-native';
 
 const styles = themeMode =>
@@ -16,6 +16,11 @@ const styles = themeMode =>
       justifyContent: 'center',
       padding: Metrics.WIDTH * 0.02,
     },
+    headerMiddleText:{
+      color: themeMode.black,
+      fontSize: Fonts.size.normal,
+      marginHorizontal: 10,
+    },
     trackView: {
       width: Metrics.HEIGHT * 0.08,
       height: Metrics.HEIGHT * 0.08,
@@ -30,7 +35,7 @@ const styles = themeMode =>
       borderColor: themeMode.borderGrey,
       borderRadius:10
     },
-    blackColor: themeMode.black
+    blackColor: themeMode.black,
   });
 
 export default styles;
