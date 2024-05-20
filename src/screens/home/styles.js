@@ -12,7 +12,7 @@ const styles = themeMode =>
     },
     headerContainerStyle: {
       borderBottomWidth: 1,
-      borderBottomColor: 'grey',
+      borderBottomColor: themeMode.borderGrey,
       justifyContent: 'center',
       padding: Metrics.WIDTH * 0.02,
     },

@@ -81,15 +81,17 @@ export function millisecondsToHHMMSS(milliseconds) {
   const hrs = h > 0 ? (h < 10 ? `0${h}:` : `${h}:`) : '';
   const mins = m > 0 ? (m < 10 ? `0${m}:` : `${m}:`) : '00:';
   const scnds = s > 0 ? (s < 10 ? `0${s}` : s) : '00';
+
+  console.log(`${hrs}${mins}${scnds}`,'timeeee');
   return `${hrs}${mins}${scnds}`;
 }
 
 export function events() {
-  TrackPlayer.addEventListener('remote-play', onRemotePlay);
-  TrackPlayer.addEventListener('remote-pause', onRemotePause);
-  TrackPlayer.addEventListener('remote-stop', onRemoteStop);
-  TrackPlayer.addEventListener('playback-state', onPlaybackState);
-  TrackPlayer.addEventListener('playback-error', onPlaybackError);
-}
+  TrackPlayer.addEventListener('remote-play', () => TrackPlayer.play());
+  TrackPlayer.addEventListener('remote-pause', () => TrackPlayer.pause);
+  TrackPlayer.addEventListener('remote-stop', () => TrackPlayer.stop);
+  TrackPlayer.addEventListener('playback-state', () => TrackPlayer.getPlaybackState());
+  TrackPlayer.addEventListener('remote-next', () => TrackPlayer.skipToNext());
+  TrackPlayer.addEventListener('remote-previous', () => TrackPlayer.skipToPrevious());}
 
 export function playBackServices(){}
