@@ -21,7 +21,7 @@ const styles = themeMode =>
       height: Metrics.HEIGHT * 0.06,
       width: Metrics.HEIGHT * 0.06,
       borderRadius: Metrics.HEIGHT * 0.03,
-      backgroundColor: themeMode.black,
+      backgroundColor: themeMode.white,
       alignItems: 'center',
       justifyContent: 'center',
     },

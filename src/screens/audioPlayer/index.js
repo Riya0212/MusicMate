@@ -1,4 +1,4 @@
-import {Component, useState} from 'react';
+import {Component, useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -81,7 +81,7 @@ class AudioPlayerClass extends Component {
   }
   componentWillUnmount() {
     console.log('unmounttt');
-    TrackPlayer.remove();
+    // TrackPlayer.remove();
   }
 
   addHeader() {
@@ -147,12 +147,13 @@ class AudioPlayerClass extends Component {
     this.setState({isPlaying: false}, () => TrackPlayer.pause());
   }
 
-  handleOnSliderChange(pos) {
-    console.log('in slider');
-    TrackPlayer.seekTo(parseInt(pos));
-    TrackPlayer.play().then(() => {
-      this.setState({isPlaying: true});
-    });
+  async handleOnSliderChange(pos) {
+    console.log('in slider',pos);
+    await TrackPlayer.seekTo(pos);
+    // TrackPlayer.seekTo(parseInt(pos));
+    // TrackPlayer.play().then(() => {
+    //   this.setState({isPlaying: true});
+    // });
   }
   render() {
     const {progress, activeTrack, currentTrack, isPlaying, isLoading} =
@@ -161,7 +162,7 @@ class AudioPlayerClass extends Component {
     console.log(
       activeTrack,
       'activveee',
-      millisecondsToHHMMSS(currentTrack?.duration_ms / 1000),
+      millisecondsToHHMMSS(activeTrack?.duration_ms / 1000),
     );
     return (
       <View style={this.props.styles.viewContainer}>
@@ -224,15 +225,17 @@ class AudioPlayerClass extends Component {
                 }}
                 minimumValue={0}
                 maximumValue={300}
-                minimumTrackTintColor="white"
+                minimumTrackTintColor="black"
                 maximumTrackTintColor="grey"
-                thumbTintColor="white"
+                thumbTintColor="black"
                 value={progress.position}
-                onValueChange={val => {
-                  TrackPlayer.pause();
-                  this.setState({isPlaying: false});
+                onValueChange={async val => {
+                  // await TrackPlayer.seekTo(val)
+                  // TrackPlayer.pause();
+                  // this.setState({isPlaying: false});
+
                 }}
-                onSlidingComplete={() => this.handleOnSliderChange()}
+                onSlidingComplete={(val) => this.handleOnSliderChange(val)}
               />
               <View
                 style={{
@@ -247,7 +250,7 @@ class AudioPlayerClass extends Component {
                 />
                 <TextComponent
                   text={millisecondsToHHMMSS(
-                    Math.floor(currentTrack?.duration_ms / 100),
+                    Math.floor(progress?.duration || 0)
                   )}
                 />
               </View>
@@ -344,11 +347,16 @@ class AudioPlayerClass extends Component {
   }
 }
 
-const AudioPlayer = props => {
+const AudioPlayer =  (props) => {
   const [currentTrack, setCurrentTrack] = useState(0);
   const style = Colors.useThemedStyles(styles);
   const progress = useProgress();
-
+  useEffect(() => {
+  getActiveTrack()
+  })
+  const getActiveTrack  = async() => {
+  setCurrentTrack(await TrackPlayer.getActiveTrackIndex())
+  }
   // const track=  await getActiveTrack();
 
   // useTrackPlayerEvents([Event.PlaybackActiveTrackChanged], async (event) => {
